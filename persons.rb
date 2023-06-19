@@ -20,3 +20,15 @@ class Persons
         of_age? || @parent_permission
     end
 end
+
+
+class Teacher < Persons
+    def initialize(id, age, specialization, parent_permission = true, name = "Unknown")
+        super(id, age, parent_permission, name)
+        @specialization = specialization
+    end
+
+    def can_use_services?
+        true
+    end
+end
