@@ -26,4 +26,3 @@ class Persons
     @age >= 18
   end
 end
-
