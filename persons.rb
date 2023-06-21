@@ -27,3 +27,15 @@ class Persons < Nameable
     @age >= 18
   end
 end
+
+
+
+
+  # student_1 = Student.new(10, 12, 'true', 'Bill')
+  # student_2 = Student.new(15, 15, 'true', 'Bob')
+
+  # class_1 = Classroom.new('A1')
+  # class_2 = Classroom.new('A4')
+
+  # class_1.add_student(student_1)
+  
