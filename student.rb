@@ -10,8 +10,7 @@ class Student < Persons
     '¯(ツ)/¯'
   end
 
-  
-  def set_classroom(classroom)
+  def allocate_classroom(classroom)
     @classroom = classroom
     classroom.add_student(self)
   end
