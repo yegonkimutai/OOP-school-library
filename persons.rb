@@ -28,5 +28,3 @@ class Persons < Nameable
     @age >= 18
   end
 end
- 
-  
