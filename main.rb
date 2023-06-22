@@ -3,7 +3,7 @@ require_relative 'app'
 
 def list_options
   '
-  
+
     1 - Add a book
     2 - Show books
     3 - Add a person
