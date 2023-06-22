@@ -25,7 +25,7 @@ class App
         
     def list_books
         puts ''
-        @books.each{ |book| print 'Author: #{book.author}', 'Title: #{book.title}'}
+        @books.each{ |book| puts "Author: #{book.author}, Title: #{book.title}"}
     end
 
     def new_person
@@ -56,41 +56,42 @@ class App
         puts ''
         @person.each do |person|
             puts ''
-            print '[#{person.class}]'
-            print 'Name: #{person.name}'
-            print 'Age: #{person.age}'
+            puts "[#{person.class}]"
+            puts "Name: #{person.name}"
+            puts "Age: #{person.age}"
 
             if person.instance_of?(Student)
-                print 'Permission: [#{person.parent_permission}]'
+                puts "Permission: [#{person.parent_permission}]"
             else
-                print 'Specialization: [#{person.specialization}]'
+                puts "Specialization: [#{person.specialization}]"
             end
         end
     end
 
-    def add_rental
+    def new_rental
         puts ''
         puts 'Select book by number(not id): '
 
-        @books.each_with_index { |book, index| puts '(#{index}) Author: #{book.author}, Title: #{book.title}'}
+        @books.each_with_index { |book, index| puts "(#{index}) Author: #{book.author}, Title: #{book.title}"}
         puts ''
-        book_number = gets.chomp.to_i
+        book_num = gets.chomp.to_i
         puts ''
 
         puts ''
         puts 'Select person by number(not id): '
 
         @person.each_with_index do |person, index| 
-            puts '(#{index}) [#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}'
+            puts "(#{index}) [#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
         end
         puts ''
-        person_number = gets.chomp.to_i
+        person_num = gets.chomp.to_i
         puts ''
 
         print 'Date(yyyy/mm/dd): '
         date = gets.chomp
 
-        @rentals << Rental.new(date, @book[book_number], @person[person_number])
+        rental = Rental.new(date, @books[book_num], @person[person_num])
+        @rentals << rental
         puts ''
         print 'Adding successful'
     end
@@ -99,7 +100,7 @@ class App
         puts ''
         puts 'All ID\'s: '
         @rentals.each do |rental|
-            puts rental.person.id if rental.person.id
+            puts rental.persons.id if rental.persons.id
         end
         puts ''
 
@@ -109,8 +110,8 @@ class App
 
         puts 'Rental(s) for ID: '
         @rentals.each do |rental|
-            if rental.person.id == id
-                puts 'Date: #{rental.date} Book: #{rental.book.title} by #{rental.book.author}'
+            if rental.persons.id == id
+                puts "Date: #{rental.date} Book: #{rental.book.title} by #{rental.book.author}"
             else
                 puts 'Person does not exist'
             end
