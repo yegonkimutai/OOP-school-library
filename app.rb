@@ -65,11 +65,10 @@ class App
 
       if person.instance_of?(Student)
         puts "Permission: [#{person.parent_permission}]"
-        puts ''
       else
         puts "Specialization: [#{person.specialization}]"
-        puts ''
       end
+      puts ''
     end
   end
 
@@ -78,10 +77,7 @@ class App
     puts 'Select book by number(not id): '
 
     @books.each_with_index { |book, index| puts "(#{index}) Author: #{book.author}, Title: #{book.title}" }
-    puts ''
     book_num = gets.chomp.to_i
-    puts ''
-
     puts ''
     puts 'Select person by number(not id): '
 
@@ -118,11 +114,10 @@ class App
     @rentals.each do |rental|
       if rental.persons.id.eql?(id)
         puts "Date: #{rental.date} Book: #{rental.book.title} by #{rental.book.author}"
-        puts ''
       else
         puts 'Person does not exist'
-        puts ''
       end
+      puts ''
     end
   end
 end
