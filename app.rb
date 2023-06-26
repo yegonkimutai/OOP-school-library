@@ -21,11 +21,13 @@ class App
     author = gets.chomp
     @books << Book.new(title, author)
     puts 'Adding successful'
+    puts ''
   end
 
   def list_books
     puts ''
     @books.each { |book| puts "Author: #{book.author}, Title: #{book.title}" }
+    puts ''
   end
 
   def new_person
@@ -49,7 +51,8 @@ class App
       @person << Teacher.new(age, specialization, name)
     end
 
-    print 'Adding successful'
+    puts 'Adding successful'
+    puts ''
   end
 
   def list_people
@@ -65,6 +68,7 @@ class App
       else
         puts "Specialization: [#{person.specialization}]"
       end
+      puts ''
     end
   end
 
@@ -73,10 +77,7 @@ class App
     puts 'Select book by number(not id): '
 
     @books.each_with_index { |book, index| puts "(#{index}) Author: #{book.author}, Title: #{book.title}" }
-    puts ''
     book_num = gets.chomp.to_i
-    puts ''
-
     puts ''
     puts 'Select person by number(not id): '
 
@@ -93,7 +94,8 @@ class App
     rental = Rental.new(date, @books[book_num], @person[person_num])
     @rentals << rental
     puts ''
-    print 'Adding successful'
+    puts 'Adding successful'
+    puts ''
   end
 
   def list_rentals
@@ -115,6 +117,7 @@ class App
       else
         puts 'Person does not exist'
       end
+      puts ''
     end
   end
 end
