@@ -21,11 +21,13 @@ class App
     author = gets.chomp
     @books << Book.new(title, author)
     puts 'Adding successful'
+    puts ''
   end
 
   def list_books
     puts ''
     @books.each { |book| puts "Author: #{book.author}, Title: #{book.title}" }
+    puts ''
   end
 
   def new_person
@@ -49,7 +51,8 @@ class App
       @person << Teacher.new(age, specialization, name)
     end
 
-    print 'Adding successful'
+    puts 'Adding successful'
+    puts ''
   end
 
   def list_people
@@ -62,8 +65,10 @@ class App
 
       if person.instance_of?(Student)
         puts "Permission: [#{person.parent_permission}]"
+        puts ''
       else
         puts "Specialization: [#{person.specialization}]"
+        puts ''
       end
     end
   end
@@ -93,7 +98,8 @@ class App
     rental = Rental.new(date, @books[book_num], @person[person_num])
     @rentals << rental
     puts ''
-    print 'Adding successful'
+    puts 'Adding successful'
+    puts ''
   end
 
   def list_rentals
@@ -112,8 +118,10 @@ class App
     @rentals.each do |rental|
       if rental.persons.id.eql?(id)
         puts "Date: #{rental.date} Book: #{rental.book.title} by #{rental.book.author}"
+        puts ''
       else
         puts 'Person does not exist'
+        puts ''
       end
     end
   end
