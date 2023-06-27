@@ -12,6 +12,8 @@ class App
     @person = []
     @books = []
     @rentals = []
+
+    load_data
   end
 
   def new_book
