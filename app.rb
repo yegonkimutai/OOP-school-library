@@ -122,7 +122,6 @@ class App
     end
   end
 
-  
   def save_data
     save_data_to_json('books.json', @books)
     save_data_to_json('people.json', @person)
@@ -130,4 +129,8 @@ class App
   end
 
   private
+
+  def save_data_to_json(filename, data)
+    File.write(filename, JSON.generate(data))
+  end
 end
