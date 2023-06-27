@@ -128,7 +128,22 @@ class App
     save_data_to_json('rentals.json', @rentals)
   end
 
+  def load_data
+    @books = load_data_from_json('books.json', [])
+    @people = load_data_from_json('people.json', [])
+    @rentals = load_data_from_json('rentals.json', [])
+  end
+
   private
+
+  def load_data_from_json(filename, default_value)
+    if File.exist?(filename)
+      json_data = File.read(filename)
+      JSON.parse(json_data)
+    else
+      default_value
+    end
+  end
 
   def save_data_to_json(filename, data)
     File.write(filename, JSON.generate(data))

@@ -1,5 +1,9 @@
 require_relative 'app'
 
+app = App.new
+
+app.load_data
+
 class Menu < App
   OPTIONS = {
     1 => :new_book,
