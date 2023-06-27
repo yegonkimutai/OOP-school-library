@@ -12,7 +12,7 @@ class Menu < App
     4 => :list_people,
     5 => :new_rental,
     6 => :list_rentals,
-    7 => :exit
+    7 => :on_exit
   }.freeze
 
   def initialize(app)
@@ -38,7 +38,6 @@ class Menu < App
       return exit if selected_option == :exit
 
       @app.send(selected_option)
-      @app.save_data
     else
       puts 'Invalid selection'
     end

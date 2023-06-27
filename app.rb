@@ -122,30 +122,72 @@ class App
     end
   end
 
-  def save_data
-    save_data_to_json('books.json', @books)
-    save_data_to_json('people.json', @person)
-    save_data_to_json('rentals.json', @rentals)
-  end
-
-  def load_data
-    @books = load_data_from_json('books.json', [])
-    @people = load_data_from_json('people.json', [])
-    @rentals = load_data_from_json('rentals.json', [])
-  end
-
-  private
-
-  def load_data_from_json(filename, default_value)
-    if File.exist?(filename)
-      json_data = File.read(filename)
-      JSON.parse(json_data)
+  def get_data(file_name)
+    if File.exist?("#{file_name}.json")
+      File.read("#{file_name}.json")
     else
-      default_value
+      empty_json = [].to_json
+      File.write("#{file_name}.json", empty_json)
+      empty_json
     end
   end
 
-  def save_data_to_json(filename, data)
-    File.write(filename, JSON.generate(data))
+  def load_data
+    books = JSON.parse(get_data('books'))
+    people = JSON.parse(get_data('person'))
+    rentals = JSON.parse(get_data('rentals'))
+
+    books.each do |book|
+      @books << Book.new(book['title'], book['author'])
+    end
+    people.each do |person|
+      @person << if person['type'] == 'Teacher'
+                   Teacher.new(person['age'], person['specialization'], person['name'])
+                 else
+                   Student.new(person['age'], person['parent_permission'], person['name'])
+                 end
+    end
+    rentals.each do |rental|
+      renter = @person.select { |person| person.name == rental['person_name'] }
+      rented_book = @books.select { |book| book.title == rental['book_titles'] }
+      @rentals << Rental.new(rental['date'], rented_book[0], renter[0])
+    end
+  end
+
+  def update_people
+    updated_people = []
+
+    @person.each do |person|
+      if person.instance_of?(Teacher)
+        updated_people << { 'type' => Teacher, 'name' => person.name, 'age' => person.age,
+                            'specialization' => person.specialization }
+      elsif person.instance_of?(Student)
+        updated_people << { 'type' => Student, 'name' => person.name, 'age' => person.age,
+                            'permission' => person.parent_permission }
+      end
+    end
+
+    File.write('person.json', JSON.generate(updated_people))
+  end
+
+  def on_exit
+    puts 'Thank you for using the Library'
+    updated_books = []
+
+    @books.each do |book|
+      updated_books << { 'title' => book.title, 'author' => book.author }
+    end
+
+    File.write('books.json', JSON.generate(updated_books))
+    update_people
+    updated_rentals = []
+
+    @rentals.each do |rental|
+      updated_rentals << { 'person_name' => rental.persons.name, 'book_titles' => rental.book.title,
+                           'date' => rental.date }
+    end
+
+    File.write('rentals.json', JSON.generate(updated_rentals))
+    exit
   end
 end
