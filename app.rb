@@ -3,6 +3,7 @@ require_relative 'book'
 require_relative 'student'
 require_relative 'teacher'
 require_relative 'rental'
+require 'json'
 
 class App
   attr_accessor :person, :books, :rentals
@@ -120,4 +121,13 @@ class App
       puts ''
     end
   end
+
+  
+  def save_data
+    save_data_to_json('books.json', @books)
+    save_data_to_json('people.json', @person)
+    save_data_to_json('rentals.json', @rentals)
+  end
+
+  private
 end

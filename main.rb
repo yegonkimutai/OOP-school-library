@@ -1,5 +1,7 @@
 require_relative 'app'
 
+app = App.new
+
 class Menu < App
   OPTIONS = {
     1 => :new_book,
@@ -34,6 +36,7 @@ class Menu < App
       return exit if selected_option == :exit
 
       @app.send(selected_option)
+      @app.save_data
     else
       puts 'Invalid selection'
     end
