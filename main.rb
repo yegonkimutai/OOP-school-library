@@ -1,7 +1,5 @@
 require_relative 'app'
 
-App.new
-
 class Menu < App
   OPTIONS = {
     1 => :new_book,
