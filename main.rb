@@ -1,5 +1,9 @@
 require_relative 'app'
 
+app = App.new
+
+app.load_data
+
 class Menu < App
   OPTIONS = {
     1 => :new_book,
@@ -8,7 +12,7 @@ class Menu < App
     4 => :list_people,
     5 => :new_rental,
     6 => :list_rentals,
-    7 => :exit
+    7 => :on_exit
   }.freeze
 
   def initialize(app)
