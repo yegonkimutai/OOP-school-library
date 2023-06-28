@@ -11,5 +11,10 @@ describe Teacher do
       teacher = Teacher.new(18, 'Bio', 'Mister', true)
       expect(teacher.specialization).to eq('Bio')
     end
+
+    it 'Use service' do
+      teacher = Teacher.new(18, 'maths', 'Col', true)
+      expect(teacher.can_use_services?).to eq(true)
+    end
   end
 end
