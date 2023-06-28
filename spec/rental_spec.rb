@@ -14,13 +14,13 @@ describe Rental do
     end
 
     it 'adds to the book rentals' do
-        subject
-        expect(book.rentals).to include(subject)
-      end
-  
-      it 'adds to the persons rentals' do
-        subject
-        expect(persons.rentals).to include(subject)
-      end
+      subject
+      expect(book.rentals).to include(subject)
+    end
+
+    it 'adds to the persons rentals' do
+      subject
+      expect(persons.rentals).to include(subject)
+    end
   end
 end
