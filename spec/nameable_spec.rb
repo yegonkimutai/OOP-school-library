@@ -1,19 +1,19 @@
 require_relative '../nameable'
 
 describe Nameable do
-  it "should raise NotImplementedError" do
+  it 'should raise NotImplementedError' do
     nameable = Nameable.new
     expect { nameable.correct_name }.to raise_error(NotImplementedError)
   end
 end
 
 describe Decorator do
-  it "should delegate correct_name to the object" do
-    wrapped = double("WrappedObject")
-    expect(wrapped).to receive(:correct_name).and_return("John Doe")
+  it 'should delegate correct_name to the object' do
+    wrapped = double('WrappedObject')
+    expect(wrapped).to receive(:correct_name).and_return('John Doe')
 
     decorator = Decorator.new(wrapped)
-    expect(decorator.correct_name).to eq("John Doe")
+    expect(decorator.correct_name).to eq('John Doe')
   end
 end
 

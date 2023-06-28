@@ -29,7 +29,7 @@ describe Persons do
   end
 
   it 'Use service method' do
-   expect(person1.can_use_services?).to eq(true)
+    expect(person1.can_use_services?).to eq(true)
   end
 
   it 'gives correct name' do
